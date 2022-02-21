@@ -25,21 +25,11 @@ int main(){
        arm_r&p_2=0.5;
        wait(300);　//この時間の間ラックが戻っている→元の位置に戻る
        }
+    else{
+       arm_r&p_1=0.5;
+       arm_r&p_2=0;
+    } 
        
-       //エアシリンダーの動作
-        if(hold.read()==0){
-            wait(0.05);
-            if(hold.read()==0){//やや長押しで反応
-                printf("hold\r\n");
-                cylinder=1;
             }
-            
-        }else if(release.read()==0){
-            wait(0.05);
-            if(release.read()==0){
-                printf("release\r\n");
-                cylinder=0;
-            }
-        }    
-}
+          
 
