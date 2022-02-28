@@ -3,8 +3,8 @@
 
     //ピン出力の設定
     //_1が正回転、_2が逆回転    
-PwmOut arm_r&p_1(PB_6); //0.5出力 で動く、０出力で動かない
-PwmOut arm_r&p_2(PA_5);//0.5出力 で動く、０出力で動かない
+PwmOut arm_rp_1(PC_8); //0.5出力 で動く、０出力で動かない
+PwmOut arm_rp_2(PC_6);//0.5出力 で動く、０出力で動かない
 
     //ピン入力設定
 DigitalIn pushrack(PC_11,PullUp); //ラックを押し出す
