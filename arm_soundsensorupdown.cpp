@@ -1,28 +1,23 @@
 #include "mbed.h"
 
 #define PWM_T 0.1 //PWM周期：100ms
-PwmOut PWM_TRIGER(PB_6); //超音波センサモジュールのTriger端子に入力する信号
+PwmOut PWM_TRIGER(PC_12); //超音波センサモジュールのTriger端子に入力する信号
 
 
-InterruptIn GET_PWM(PC_7); //割り込み入力端子の設定．マイコンから出力したPWM信号をD9端子から取り込む． 
+InterruptIn GET_PWM(PC_10); //割り込み入力端子の設定．マイコンから出力したPWM信号をD9端子から取り込む． 
 
 Timer ActiveTime; //タイマー計測用変数
 
 //上下運動アームのモーター設定
 //ピン出力の設定　モタドラとの接続ピン
-PwmOut armdown(PA_6); //0.5出力 で動く、０出力で動かない⇒正回転をし下方向
-PwmOut armup(PA_5);//0.5出力 で動く、０出力で動かない⇒逆回転をし上方向
-DigitalOut stbyAB(PA_11);
-DigitalOut stbyCD(PC_9);
+PwmOut armdown(PA_12); //0.5出力 で動く、０出力で動かない⇒正回転をし下方向
+PwmOut armup(PA_11);//0.5出力 で動く、０出力で動かない⇒逆回転をし上方向
+
     
 /*PWM周期の設定
 armup.period(50);
 armdown.period(50);
 */
-
-//ボタンのピン設定
-DigitalIn buttondown(PC_11,PullUp); //PullUp:押してなければ0,押したら1.
-//ボタンを押している間アームが下がる。離すとアームが上がる。
 
 unsigned int Count;
 
@@ -60,6 +55,11 @@ int main(){
                 armdown=0.5;
                 armup=0;
                 wait(300);
+                
+                armdown=0;
+                armup=0;
+                wait(5);
+
                 armdown=0;
                 armup=0.5;
                 wait(300);
